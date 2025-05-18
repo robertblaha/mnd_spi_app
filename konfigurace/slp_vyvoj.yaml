@@ -1,0 +1,271 @@
+# Definiční soubor pro LHC (Lesní hospodářský celek)
+---
+# Základní specifikace LHC a LHP
+ico: 'SLP_VYVOJ'
+nazev_firmy: 'Testovací prostředí ŠLP pro DP'
+lhc_kod: '618000'
+nazev: 'ŠLP Masarykův les Křtiny (DP RBL)'
+lhp_platnost_od: '2024-01-01'
+pocet_let_platnosti: '10'
+legislativni_prostredi: 'CZ01'
+popis: 'Vývojová data ŠLP'
+tez_lhe: 160000 # Výše těžeb za období do minulé inventarizace dle LHE
+opakovana_inventarizace: 1
+
+# Definice inventarizačních kampaní
+ik:
+  'Inventarizace pro LHP':
+    kampan_od: '2023-03-01'
+    kampan_do: '2023-12-31'
+    legal: 'CZ01'
+    vs_all: 1
+    #vs: # výčet výběrových strat
+
+# Konfigurace pro import dat
+data_dir: "data\\slp_vyvoj"
+
+# Konfigurace databázového připojení
+db_config:
+  postgres_user: 'postgres'
+  postgres_password: 'MendeluRulez'
+  postgres_host: 'localhost'
+  postgres_port: '5432'
+  postgres_db: 'mnd_spi_db'
+
+# Konfigurace importu mapových vrstev
+CRS: "EPSG:5514"
+mapove_vrstvy:
+  #povinné vrstvy
+  det:
+    soubor: "P0110.shp"
+    popis: "Lesnický detail"
+    typ: "polygon"
+  vs:
+    soubor: "vs.shp"
+    popis: "Výběrová strata"
+    typ: "polygon"
+    sloupce:
+      stratum: 'stratum'
+      stratum_popis: 'stratum_po'
+  il:
+    soubor: "il.shp"
+    popis: "Inventarizační lokality"
+    typ: "point"
+  hos:
+    soubor: "hos.shp"
+    popis: "Hospodářské skupiny"
+    typ: "polygon"
+  # Nepovinné vrstvy (typologie a podoblasti)
+  typologie:
+    soubor: "PAR.shp"
+    popis: "Typologická mapa"
+    typ: "polygon"
+  ip:
+    soubor: "ip.shp"
+    popis: "Inventarizační plochy" # pokud nejsou importovány, mohou být generovány dle KIL
+    typ: "point"
+  # Podoblasti
+  lu:
+    soubor: "lu.shp"
+    popis: "Lesnické úseky"
+    typ: "polygon"
+  ls:
+    soubor: "ls.shp"
+    popis: "Lesní správy"
+    typ: "polygon"
+
+# Konfigurace importu inventarizačních dat z CSV souborů
+datove_soubory:
+  # povinné soubory
+  ip:
+    soubor: 'ip.csv'
+    popis: 'Data inventarizačních ploch'
+  vz:
+    soubor: 'vz.csv'
+    popis: 'Data vzorníků'
+    sloupce:
+      vyska: 'mvyska'
+      vyska_pred: 'mvyska_pred'
+  pno:
+    soubor: 'pno.csv'
+    popis: 'Data pomocných navigačních objektů'
+  # nepovinné soubory
+  mod_vys:
+    soubor: 'mod_vys.csv'
+    popis: 'Model výšek vzorníků v aktuální inventarizaci'
+  mod_vys_pred:
+    soubor: 'mod_vys_pred.csv'
+    popis: 'Model výšek vzorníků v předchozí inventarizaci'
+
+# Konfigurace inventarizačních lokalit
+kil:
+  '01':
+    nazev: 'Jedna plocha se třemi podplochami'
+    plochy:
+      '1':
+        azimut_pid: 0
+        vzd_pid: 0
+        rf: 9
+        podplochy:
+          '1':
+            sp_r: 3
+            min_d13: 7
+          '2':
+            sp_r: 7
+            min_d13: 12
+          '3':
+            sp_r: 12.62
+            min_d13: 30
+
+# Tloušťkové třídy
+tlt:
+  interval: 4
+  prvni: 6
+  posledni: 134
+
+# Výběrová strata
+vs:
+  '1':
+    stratum_popis: "01 - Střední les"
+    kil: '01'
+  '2':
+    stratum_popis: "02 - Střední les"
+    kil: '01'
+  '3':
+    stratum_popis: "03 - Nízký les"
+    kil: '01'
+  '4':
+    stratum_popis: "04 - Dauerwald smíšený nižších poloh"
+    kil: '01'
+  '5':
+    stratum_popis: "05 - Dauerwald smíšený nižších poloh"
+    kil: '01'
+  '6':
+    stratum_popis: "06 - Dauerwald smíšený středních poloh"
+    kil: '01'
+  '7':
+    stratum_popis: "07 - Dauerwald smíšený středních poloh"
+    kil: '01'
+  '8':
+    stratum_popis: "08 - Výběrný les"
+    kil: '01'
+  '9':
+    stratum_popis: "09 - Výběrný les"
+    kil: '01'
+  '10':
+    stratum_popis: "10 - Dauerwald smíšený středních poloh"
+    kil: '01'
+  '11':
+    stratum_popis: "11 - Mozaikový les"
+    kil: '01'
+  '12':
+    stratum_popis: "12 - Přírůstné hospodářství"
+    kil: '01'
+  '13':
+    stratum_popis: "13 - Les s vysokým obmýtím a extenzivní"
+    kil: '01'
+  '14':
+    stratum_popis: "14 - Ochranný les mimo ZCHÚ"
+    kil: '01'
+
+# Hospodářské skupiny
+hos:
+  det_sloupec: 'HOS'
+  skupiny:
+    '01':
+      nazev: "Účelové hospodářství v modelu Dauerwald nižších poloh"
+      popis: ''
+      det_kod: '1'
+    '02':
+      nazev: "Účelové hospodářství v modelu Dauerwald středních poloh"
+      popis: ''
+      det_kod: '2'
+    '03':
+      nazev: "Účelové hospodářství v modelu Dauerwald středních poloh v genové základně"
+      popis: ''
+      det_kod: '3'
+    '04':
+      nazev: "Účelové hospodářství v modelu výběrný les"
+      popis: ''
+      det_kod: '4'
+    '05':
+      nazev: "Účelové hospodářství v modelu výběrný les v genové základně"
+      popis: ''
+      det_kod: '5'
+    '06':
+      nazev: "Účelové hospodářství v modelu mozaikový les"
+      popis: ''
+      det_kod: '6'
+    '07':
+      nazev: "Účelové hospodářství v modelu přírůstném"
+      popis: ''
+      det_kod: '7'
+    '08':
+      nazev: "Účelové hospodářství v modelu nízký les"
+      popis: ''
+      det_kod: '8'
+    '09':
+      nazev: "Účelové hospodářství v modelu střední les"
+      popis: ''
+      det_kod: '9'
+    '10':
+      nazev: "Účelové hospodářství v modelu extenzivní les"
+      popis: ''
+      det_kod: '10'
+    '11':
+      nazev: "Účelové hospodářství v ochranných lesích na mimořádně nepříznivých stanovištích"
+      popis: ''
+      det_kod: '11'
+
+# Podoblasti
+podoblasti:
+  'LS':
+    nazev: 'Lesní správy'
+    popis: ''
+    oblasti:
+      '10':
+        nazev: "Vranov"
+        popis: ''
+      '11':
+        nazev: "Habrůvka"
+        popis: ''
+      '13':
+        nazev: "Bílovice"
+        popis: ''
+  'LU':
+    nazev: 'Lesnické úseky'
+    popis: ''
+    oblasti:
+      '10-01':
+        nazev: "Vranov Baba"
+        popis: ''
+      '10-02':
+        nazev: "Vranov Útěchov"
+        popis: ''
+      '10-03':
+        nazev: "Vranov Soběšice"
+        popis: ''
+      '11-01':
+        nazev: "Habrůvka Josefov"
+        popis: ''
+      '11-02':
+        nazev: "Habrůvka Rudice"
+        popis: ''
+      '11-03':
+        nazev: "Habrůvka Borky"
+        popis: ''
+      '11-04':
+        nazev: "Habrůvka Dřínová"
+        popis: ''
+      '11-05':
+        nazev: "Habrůvka Rakovec"
+        popis: ''
+      '13-01':
+        nazev: "Bílovice Vypálenky"
+        popis: ''
+      '13-02':
+        nazev: "Bílovice Hády"
+        popis: ''
+      '13-03':
+        nazev: "Bílovice Výpustek"
+        popis: ''

@@ -1,0 +1,20 @@
+# Adresář virtuálního prostředí
+venv/
+*/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Soubory IDE a editorů
+.cursor/
+
+# Soubory operačního systému
+.DS_Store
+Thumbs.db
+
+# Logovací soubory
+*.log
+
+# Pomocné soubory
+aktivuj_venv.bat
+update _requirements.bat

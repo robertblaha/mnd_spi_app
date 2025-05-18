@@ -1,0 +1,52 @@
+kroky:
+  - nazev: inicializace_lhp
+    konfig_klic: inicializace.lhp
+    metoda: inicializace_lhp
+    zprava: "Inicializace LHP"
+    zprava_ok: "Inicializace LHP dokončena"
+
+  - nazev: inicializace_podoblasti
+    konfig_klic: inicializace.podoblasti
+    metoda: inicializace_podoblasti
+    zprava: "Inicializace podoblastí"
+
+  - nazev: import_gis
+    konfig_klic: import_gis.provadet
+    metoda: import_gis
+    zprava: "Import mapových vrstev"
+
+  - nazev: vypocet_ploch
+    konfig_klic: vypocet_ploch
+    metoda: vypocet_ploch
+    zprava: "Výpočet ploch PSPP"
+
+  - nazev: generovani_vazeb
+    konfig_klic: generovani_vazeb.provadet
+    metoda: generovani_vazeb
+    zprava: "Generování vazeb"
+
+  - nazev: import_csv
+    konfig_klic: import_csv.provadet
+    metoda: import_csv_dat
+    zprava: "Import dat z inventarizace"
+
+  - nazev: import_dat
+    konfig_klic: import_dat.provadet
+    metoda: import_dat
+    zprava: "Kontrola a import dat pro výpočet"
+
+  - nazev: vyskovy_model
+    konfig_klic: vyskovy_model.provadet
+    metoda: vyskovy_model
+    zprava: "Vytvoření výškového modelu a doplnění výšek"
+
+  - nazev: vypocet_lhp
+    konfig_klic: vypocet_lhp.provadet
+    metoda: vypocet_lhp
+    zprava: "Výpočet LHP"
+
+  - nazev: export_dat
+    konfig_klic: export_dat.provadet
+    metoda: export_dat
+    zprava: "Export dat"
+    

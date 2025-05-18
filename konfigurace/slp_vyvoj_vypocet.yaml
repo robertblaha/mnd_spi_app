@@ -1,0 +1,83 @@
+# Konfigurace průběhu samotného výpočtu
+nastaveni_vypoctu:
+  ignorovat_varovani: 1
+
+# Inicializace LHP a základních nastavení
+inicializace:
+  lhp: 0
+  podoblasti: 0
+
+# Provedení importů mapových dat
+import_gis:
+  provadet: 0
+  vrstvy:
+    # povinné vrstvy
+    det: 1
+    vs: 1
+    hos: 1
+    il: 1
+    # nepovinné vrstvy
+    typologie: 0
+    ip: 0
+    lu: 1
+    ls: 1
+
+# Zjištění celkových ploch a ploch PSPP LHC/LHP a podoblastí dle DETu a mapových vrstev
+vypocet_ploch: 0
+
+# Vygenerování poloh IP a vazeb VS, IL, IP a podoblastí
+generovani_vazeb:
+  provadet: 0
+  ip: 1
+  ip_zdroj: gen # gen (generování dle KIL z IL) nebo shp (importovány jako mapová vrstva IP)
+  il: 1
+  podoblasti: 1
+
+import_csv:
+  provadet: 0
+  data:
+    ip: 1
+    vz: 1
+    pno: 1
+    mod_vys: 1
+    mod_vys_pred: 1
+
+kontrola_csv: 0
+
+import_dat:
+  provadet: 0
+  ip:
+    provadet: 0
+    lt_zdroj: 'mapa' # import (LT byl součástí csv importu), mapa (zjistit dohledáním v importované typologické mapě)
+  vz:
+    provadet: 0
+  pno:
+    provadet: 1
+
+vyskovy_model:
+  provadet: 0
+  zdroj_vysek: 'vypocet' # import_vz (modelové výšky součástí importu VZ), import_modelu (import mod_vys a mod_vys_pred), vypocet (výpočet výškové funkce a modelových výšek)
+  nahledy_modelu: 0 # zobrazovat náhledy výškových modelů v průběhu výpočtu
+  vyskova_funkce: ''
+  pouzit_vysky: 1
+
+vypocet_lhp:
+  provadet: 0
+  parametry:
+    propocet_zz: 0
+    propocet_poloh_kmenu: 0
+    pocitat_jen_ukazatele: 0
+    pocitat_i_minulou_inventarizaci: 1
+    nepocitat_plochy_pspp: 1
+    pouzit_modelovy_ft: 0
+    modelovy_ft: 0.825
+
+kontrola_ds:
+  provadet: 0
+
+export_dat:
+  provadet: 1
+  excel: 0
+  csv: 0
+  gis: 1
+  xml_islh: 1
